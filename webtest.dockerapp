@@ -20,6 +20,8 @@ services:
       replicas: 3
     environment:
       CONTAINER_NAME: "{{.Service.Name}}.{{.Task.Slot}}.{{.Task.ID}}"
+      SERVICE_NAME: "{{.Service.Name}}"
+      TASK_SLOT: "{{.Task.Slot}}"
     ports:
       - 9999:9999
 
