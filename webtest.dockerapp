@@ -1,0 +1,23 @@
+---
+version: 0.0.0
+name: webtest
+description: "Webtest stack"
+maintainers:
+- name: Christian Kniep
+  email: christian@qnib.org
+targets:
+  swarm: true
+  kubernetes: true
+
+---
+
+version: "3.6"
+services:
+  daemon:
+    image: ${docker.image}
+    ports:
+      - 9999:9999
+
+---
+docker:
+  image: qnib/plain-webtest-base:v0.0.0
