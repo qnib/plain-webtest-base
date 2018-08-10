@@ -22,7 +22,7 @@ func getIP(w http.ResponseWriter, req *http.Request, _ httprouter.Params){
     }
     cntName := os.Getenv("CONTAINER_NAME")
     if podName == "" {
-      podName = "unkown"
+      cntName = "unkown"
     }
     fmt.Fprintf(w, "You've hit cnt:%s at path:%s on pod:%s\n", cntName, req.URL.Path, podName)
     ip, port, err := net.SplitHostPort(req.RemoteAddr)
@@ -40,12 +40,20 @@ func getIP(w http.ResponseWriter, req *http.Request, _ httprouter.Params){
     fmt.Fprintf(w, "Port: %s\n", port)
 }
 
+func getName(w http.ResponseWriter, req *http.Request, _ httprouter.Params){
+  cntName := os.Getenv("CONTAINER_NAME")
+  if podName == "" {
+    cntName = "unkown"
+  }
+  fmt.Fprintf(w, "cnt:%s\n", cntName)
+}
 
 func main() {
     // Instantiate a new router
     r := httprouter.New()
 
     r.GET("/", getIP)
+    r.GET("/cntname", getName)
 
     port := os.Getenv("HTTP_PORT")
     if port == "" {

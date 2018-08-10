@@ -16,6 +16,8 @@ services:
   daemon:
     image: ${docker.image}
     hostname: "{{.Service.Name}}.{{.Task.Slot}}.{{.Task.ID}}"
+    deploy:
+      replicas: 3
     environment:
       CONTAINER_NAME: "{{.Service.Name}}.{{.Task.Slot}}.{{.Task.ID}}"
     ports:
