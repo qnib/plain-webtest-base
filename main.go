@@ -62,6 +62,6 @@ func main() {
 
     // Start the blocking server loop.
 
-    log.Printf("Start Webserver on %s (v0.0.0)", addr)
+    log.Printf("Start Webserver on %s (v0.1.0)", addr)
     log.Fatal(http.Serve(l, r))
 }
